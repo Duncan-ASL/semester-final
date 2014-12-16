@@ -1,5 +1,7 @@
 import org.asl.karelx.Farmer;
 
+import edu.fcps.karel2.Display;
+
 /**
  * Represents a farmer capable of sowing or reaping beepers from a rectangular garden
  *
@@ -7,7 +9,9 @@ import org.asl.karelx.Farmer;
 public class BeepFarmer extends Farmer {
 
 	//  TODO Add one or more constructors, as needed
-	
+	public BeepFarmer(int x, int y) {
+		super(x, y, 0);
+	}
 	/**
 	 * Access all locations in a rectangular garden and pick up any beepers found
 	 * 
@@ -20,6 +24,22 @@ public class BeepFarmer extends Farmer {
 	 */
 	public void reap(int width, int height) {
 		// TODO You implement this
+		for(int x = 0;x<width;x++)
+		{
+			for(int y =0;y<height;y++)
+			{
+				while(nextToABeeper())
+				{
+					pickBeeper();
+				}
+				move();
+			}
+			while(nextToABeeper())
+			{
+				pickBeeper();
+			}
+			teleport(this.x+1,this.y-(height));
+		}
 	}
 	
 	/**
